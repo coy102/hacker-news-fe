@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseHostApi: 'https://hacker-news.firebaseio.com/v0',
 }
 
 /*
