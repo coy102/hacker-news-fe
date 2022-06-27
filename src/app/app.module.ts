@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
+import { RouterModule } from '@angular/router'
+import { BrowserModule } from '@angular/platform-browser'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppComponent } from './app.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { HackerListComponent } from './modules/hacker-list/hacker-list.component';
-import { rootRoutes } from './routes';
+import { AppComponent } from './app.component'
+import { LayoutComponent } from './components/layout/layout.component'
+import { HackerListComponent } from './modules/hacker-list/hacker-list.component'
+import { rootRoutes } from './routes'
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, HackerListComponent],

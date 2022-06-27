@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { HackerListComponent } from './hacker-list.component';
+import { HackerListComponent } from './hacker-list.component'
 
 describe('HackerListComponent', () => {
-  let component: HackerListComponent;
-  let fixture: ComponentFixture<HackerListComponent>;
+  let component: HackerListComponent
+  let fixture: ComponentFixture<HackerListComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HackerListComponent ]
-    })
-    .compileComponents();
+      declarations: [HackerListComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(HackerListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(HackerListComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
