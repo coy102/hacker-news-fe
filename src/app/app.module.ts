@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
-import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
-import { RouterModule } from '@angular/router'
+import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component'
 import { LayoutComponent } from './components/layout/layout.component'

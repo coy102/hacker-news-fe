@@ -33,6 +33,7 @@
     "@typescript-eslint/naming-convention": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": "error",
+    "class-methods-use-this": "off",
     "import/order": [
       "error",
       {

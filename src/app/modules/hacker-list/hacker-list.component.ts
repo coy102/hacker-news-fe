@@ -6,7 +6,5 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./hacker-list.component.css'],
 })
 export class HackerListComponent implements OnInit {
-  constructor() {}
-
   ngOnInit(): void {}
 }
