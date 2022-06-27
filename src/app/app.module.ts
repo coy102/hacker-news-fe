@@ -9,14 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HackerListComponent } from './modules/hacker-list/hacker-list.component';
-import { HackerDetailComponent } from './modules/hacker-detail/hacker-detail.component';
-
-const routes = [
-  {
-    path: 'hacker-detail',
-    component: HackerDetailComponent,
-  },
-];
+import { rootRoutes } from './routes';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, HackerListComponent],
@@ -25,7 +18,7 @@ const routes = [
     MatIconModule,
     MatToolbarModule,
     NoopAnimationsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(rootRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent],
