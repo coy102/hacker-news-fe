@@ -13,15 +13,9 @@
     >
   </div>
   <div>
-    <ul>
-      <li *ngFor="let comment of newsData.kids; let i = index">
-        <!-- <app-collapsible-list
-          [level]="0"
-          [id]="comment"
-          (hasBeenDeleted)="onDeleted($event)"
-        >
-        </app-collapsible-list> -->
-      </li>
-    </ul>
+    <div *ngFor="let comment of newsData.kids; let i = index">
+      <app-comment-collapsible [level]="0" [id]="comment">
+      </app-comment-collapsible>
+    </div>
   </div>
 </mat-card>

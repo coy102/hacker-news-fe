@@ -9,13 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component'
+import { CommentCollapsibleComponent } from './components/comment-collapsible/comment-collapsible.component'
 import { LayoutComponent } from './components/layout/layout.component'
 import { NewsItemComponent } from './components/news-item/news-item.component'
 import { HackerDetailComponent } from './modules/hacker-detail/hacker-detail.component'
 import { HackerListComponent } from './modules/hacker-list/hacker-list.component'
 import { rootRoutes } from './routes'
-import { ApiService } from './services/api-service.service';
-import { CommentCollapsibleComponent } from './components/comment-collapsible/comment-collapsible.component'
+import { ApiService } from './services/api-service.service'
 
 @NgModule({
   declarations: [

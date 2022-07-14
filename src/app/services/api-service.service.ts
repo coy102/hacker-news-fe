@@ -50,4 +50,11 @@ export class ApiService {
     }
     return this.$newsAll
   }
+
+  getNewsComment(commentId: number): Observable<NewsItems> {
+    return this.http
+      .get<NewsItems>(`${this.BASE_API_HOST}/item/${commentId}.json`)
+      .pipe(retry(3))
+      .pipe(map((data) => data))
+  }
 }

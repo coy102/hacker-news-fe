@@ -1,1 +1,27 @@
-<p>comment-collapsible works!</p>
+<ul>
+  <div class="comment-wrapper">
+    <div class="comment-header" *ngIf="hasComment">
+      <span
+        *ngIf="!isOpen && !!newsData.kids && !!newsData.kids.length"
+        (click)="toggleColapse()"
+      >
+        [<i class="fas fa-plus"></i>]</span
+      >
+      <span
+        *ngIf="isOpen && !!newsData.kids && !!newsData.kids.length"
+        (click)="toggleColapse()"
+      >
+        [<i class="fas fa-minus"></i>]</span
+      >
+      <span class="comment-username">{{ newsData.by }}</span
+      >, {{ newsData.time }}
+    </div>
+    <pre class="comment-text" [innerHTML]="newsData.text"></pre>
+  </div>
+  <ng-container *ngIf="isOpen">
+    <li *ngFor="let comment of newsData.kids; let i = index">
+      <app-comment-collapsible [level]="level" [id]="comment">
+      </app-comment-collapsible>
+    </li>
+  </ng-container>
+</ul>
