@@ -1,1 +1,14 @@
-<p>hacker-list works!</p>
+<ul>
+  <li *ngFor="let feed of news; let i = index">
+    <app-news-item
+      [index]="i"
+      [id]="feed.item.id"
+      [title]="feed.item.title"
+      [url]="feed.item.url"
+      [score]="feed.item.score"
+      [by]="feed.item.by"
+      [time]="feed.item.time"
+      [commentsCount]="feed.item.kids ? feed.item.kids.length : 0"
+    ></app-news-item>
+  </li>
+</ul>

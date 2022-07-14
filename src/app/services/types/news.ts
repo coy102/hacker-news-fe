@@ -5,7 +5,12 @@ export interface NewsItems {
   kids: number[]
   score: number
   text: string
-  time: number
+  time: any
   title: string
   type: string
+}
+
+export interface NewsFeed {
+  item: NewsItems
+  count: number
 }

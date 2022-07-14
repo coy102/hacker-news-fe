@@ -1,0 +1,14 @@
+<div>
+  <div>{{ index }}. {{ title }}</div>
+  <small
+    >{{ score }} points by
+    <a class="feed-item-username">{{ by }}</a>
+    | {{ time }} |
+    <a
+      class="feed-item-comments-count"
+      [routerLink]="['/item', id]"
+      routerLinkActive="active"
+      >{{ commentsCount }} comments</a
+    >
+  </small>
+</div>

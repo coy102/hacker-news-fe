@@ -1,6 +1,13 @@
-import { HackerDetailComponent } from './modules/hacker-detail/hacker-detail.component'
+import { Routes } from '@angular/router'
 
-export const rootRoutes = [
+import { HackerDetailComponent } from './modules/hacker-detail/hacker-detail.component'
+import { HackerListComponent } from './modules/hacker-list/hacker-list.component'
+
+export const rootRoutes: Routes = [
+  {
+    path: '',
+    component: HackerListComponent,
+  },
   {
     path: 'hacker-detail',
     component: HackerDetailComponent,
