@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
 import * as moment from 'moment'
 import { map } from 'rxjs'
 import { ApiService } from 'src/app/services/api-service.service'
@@ -14,27 +13,28 @@ import { NewsProvider } from 'src/app/utils/news-provider'
 export class HackerListComponent implements OnInit {
   public news: NewsItems[]
 
-  page: number = 1
-
-  public pageSize: number = 20
-
-  public loading: boolean = true
-
   constructor(
     private apiService: ApiService,
-    private newsProvider: NewsProvider,
-    private router: Router
+    private newsProvider: NewsProvider
   ) {
     this.news = []
   }
+
+  page: number = 1
+
+  pageSize: number = 7
+
+  loading: boolean = true
 
   ngOnInit(): void {
     const cacheNews = this.newsProvider.getNewsDataCache
     this.news = cacheNews.map((item: any) => Object.assign([], item))
 
     if (this.news.length > 0) {
+      // Set loading to false when the data (cacheNews) is not empty
       this.loading = false
     } else {
+      // Load all news when the data is empty
       this.getNewsAll()
     }
   }
@@ -44,12 +44,14 @@ export class HackerListComponent implements OnInit {
       .getNewsItemInRange()
       .pipe(
         map((data) => {
+          // convert time data
           data.time = moment.unix(data.time).fromNow()
           return data
         })
       )
       .subscribe((data) => {
         this.news.push(data)
+        // set new cache for news on the first load
         this.newsProvider.setNewsDataCache(data)
       })
       .add(() => {

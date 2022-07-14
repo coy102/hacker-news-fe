@@ -7,32 +7,21 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./news-item.component.css'],
 })
 export class NewsItemComponent implements OnInit {
-  @Input() index: number
+  @Input() index!: number
 
-  @Input() id: number
+  @Input() id!: number
 
-  @Input() title: string
+  @Input() title!: string
 
-  @Input() url: any
+  @Input() url!: any
 
-  @Input() score: number
+  @Input() score!: number
 
-  @Input() by: string
+  @Input() by!: string
 
-  @Input() time: number
+  @Input() time!: number
 
-  @Input() commentsCount: number
-
-  constructor() {
-    this.index = 0
-    this.id = 0
-    this.title = ''
-    this.url = ''
-    this.by = ''
-    this.time = 0
-    this.score = 0
-    this.commentsCount = 0
-  }
+  @Input() commentsCount!: number
 
   ngOnInit(): void {}
 }

@@ -12,20 +12,24 @@ import { NewsItems } from 'src/app/services/types/news'
 export class HackerDetailComponent implements OnInit {
   public newsData!: NewsItems
 
-  public loadingItem!: boolean
+  public loadingItem: boolean = true
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // get news detail by route param (id)
     this.route.params.subscribe((params: any) => {
-      this.loadingItem = true
-      this.apiService.getNewsComment(params.id).subscribe((data) => {
-        this.newsData = {
-          ...data,
-          time: moment.unix(data.time).fromNow(),
-        }
-        this.loadingItem = false
-      })
+      this.apiService
+        .getNewsDetail(params.id)
+        .subscribe((data) => {
+          this.newsData = {
+            ...data,
+            time: moment.unix(data.time).fromNow(),
+          }
+        })
+        .add(() => {
+          this.loadingItem = false
+        })
     })
   }
 }

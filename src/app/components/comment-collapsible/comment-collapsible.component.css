@@ -13,3 +13,6 @@ ul {
 .comment-username {
   text-decoration: underline;
 }
+.comment-click {
+  cursor: pointer;
+}

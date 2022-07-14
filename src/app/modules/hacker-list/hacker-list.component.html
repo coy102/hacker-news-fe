@@ -1,21 +1,16 @@
 <div>
+  <!-- render loading condition -->
   <div *ngIf="loading" class="col-md-12 container text-center">
-    <h5>Fetching data...</h5>
+    <h5>loading ...</h5>
   </div>
 
   <div *ngIf="!loading" class="col-md-12 container">
-    <div *ngIf="news.length > 0" class="d-flex justify-content-center mt-2">
-      <ngb-pagination
-        [collectionSize]="news.length"
-        [pageSize]="pageSize"
-        [page]="page"
-        [maxSize]="0"
-        [rotate]="true"
-        [ellipses]="false"
-        [boundaryLinks]="true"
-      ></ngb-pagination>
+    <!-- render total news -->
+    <div class="d-flex justify-content-end mt-2">
+      <p>Total news: {{ news.length }}</p>
     </div>
 
+    <!-- render news list -->
     <div
       *ngFor="
         let feed of news
@@ -33,6 +28,17 @@
         [time]="feed.time"
         [commentsCount]="feed.kids ? feed.kids.length : 0"
       ></app-news-item>
+    </div>
+
+    <!-- render pagination -->
+    <div *ngIf="news.length > 0" class="d-flex justify-content-center mt-2">
+      <ngb-pagination
+        [collectionSize]="news.length"
+        [pageSize]="pageSize"
+        [(page)]="page"
+        [maxSize]="0"
+        [ellipses]="true"
+      ></ngb-pagination>
     </div>
   </div>
 </div>

@@ -1,6 +1,17 @@
 <div class="card card-root">
   <div class="card-body">
+    <!-- render loading condition -->
+    <div *ngIf="loadingItem" class="col-md-12 container text-center">
+      <b>loading ...</b>
+    </div>
+
+    <!-- render content after loading is over -->
     <div *ngIf="!loadingItem">
+      <!-- render empty state -->
+      <div *ngIf="!newsData" class="col-md-12 container text-center">
+        <b>News not found!</b>
+      </div>
+
       <h3>{{ newsData.title }}</h3>
       <small *ngIf="newsData.url">
         <a [href]="newsData.url">({{ newsData.url }})</a>
@@ -11,11 +22,13 @@
         <span [routerLink]="['/user', newsData.by]">{{ newsData.by }}</span> |
         {{ newsData.time }}</small
       >
-    </div>
-    <div>
-      <div *ngFor="let comment of newsData.kids; let i = index">
-        <app-comment-collapsible [level]="0" [id]="comment">
-        </app-comment-collapsible>
+
+      <!-- render child comments -->
+      <div>
+        <div *ngFor="let comment of newsData.kids; let i = index">
+          <app-comment-collapsible [level]="0" [id]="comment">
+          </app-comment-collapsible>
+        </div>
       </div>
     </div>
   </div>

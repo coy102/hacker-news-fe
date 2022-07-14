@@ -1,13 +1,18 @@
 <ul>
   <div class="comment-wrapper">
     <div class="comment-header" *ngIf="hasComment">
+      <!-- render click event expanding comment -->
       <span
+        class="comment-click"
         *ngIf="!isOpen && !!newsData.kids && !!newsData.kids.length"
         (click)="toggleColapse()"
       >
         [<i class="fas fa-plus"></i>]</span
       >
+
+      <!-- render click event closing comment -->
       <span
+        class="comment-click"
         *ngIf="isOpen && !!newsData.kids && !!newsData.kids.length"
         (click)="toggleColapse()"
       >
@@ -18,6 +23,8 @@
     </div>
     <pre class="comment-text" [innerHTML]="newsData.text"></pre>
   </div>
+
+  <!-- render collapsible comment -->
   <ng-container *ngIf="isOpen">
     <li *ngFor="let comment of newsData.kids; let i = index">
       <app-comment-collapsible [level]="level" [id]="comment">

@@ -25,6 +25,7 @@ export class CommentCollapsibleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get news detail by id
     this.apiService.getNewsDetail(this.id).subscribe((data) => {
       this.newsData = {
         ...data,

@@ -14,6 +14,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  // get news list
   getNews(): Observable<number[]> {
     if (!this.$news) {
       this.$news = this.http
@@ -28,6 +29,7 @@ export class ApiService {
     return this.$news
   }
 
+  // get news detail by id
   getNewsDetail(id: number): Observable<NewsItems> {
     return this.http
       .get<NewsItems>(`${this.BASE_API_HOST}/item/${id}.json`)
@@ -35,17 +37,11 @@ export class ApiService {
       .pipe(map((data) => data))
   }
 
+  // get news all with merged detail data
   getNewsItemInRange(): Observable<NewsItems> {
     return this.getNews()
       .pipe(mergeMap((data) => from(data)))
       .pipe(mergeMap((data) => this.getNewsDetail(data)))
-      .pipe(map((data) => data))
-  }
-
-  getNewsComment(commentId: number): Observable<NewsItems> {
-    return this.http
-      .get<NewsItems>(`${this.BASE_API_HOST}/item/${commentId}.json`)
-      .pipe(retry(3))
       .pipe(map((data) => data))
   }
 }
