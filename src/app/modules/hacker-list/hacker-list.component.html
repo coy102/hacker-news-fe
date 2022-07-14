@@ -1,28 +1,38 @@
 <div>
-  <div>
-    <button mat-button (click)="prevPage()">
-      <i class="fas fa-arrow-left"></i>
-    </button>
-    &#8239;&#8239;
-    <span>{{ page }}</span>
-    <span>/</span>
-    <span>{{ totalPages }}</span>
-    &#8239;&#8239;
-    <button mat-button (click)="nextPage()">
-      <i class="fas fa-arrow-right"></i>
-    </button>
+  <div *ngIf="loading" class="col-md-12 container text-center">
+    <h5>Fetching data...</h5>
   </div>
 
-  <div *ngFor="let feed of news; let i = index">
-    <app-news-item
-      [index]="i"
-      [id]="feed.item.id"
-      [title]="feed.item.title"
-      [url]="feed.item.url"
-      [score]="feed.item.score"
-      [by]="feed.item.by"
-      [time]="feed.item.time"
-      [commentsCount]="feed.item.kids ? feed.item.kids.length : 0"
-    ></app-news-item>
+  <div *ngIf="!loading" class="col-md-12 container">
+    <div *ngIf="news.length > 0" class="d-flex justify-content-center mt-2">
+      <ngb-pagination
+        [collectionSize]="news.length"
+        [pageSize]="pageSize"
+        [page]="page"
+        [maxSize]="0"
+        [rotate]="true"
+        [ellipses]="false"
+        [boundaryLinks]="true"
+      ></ngb-pagination>
+    </div>
+
+    <div
+      *ngFor="
+        let feed of news
+          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize;
+        index as i
+      "
+    >
+      <app-news-item
+        [index]="i"
+        [id]="feed.id"
+        [title]="feed.title"
+        [url]="feed.url"
+        [score]="feed.score"
+        [by]="feed.by"
+        [time]="feed.time"
+        [commentsCount]="feed.kids ? feed.kids.length : 0"
+      ></app-news-item>
+    </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ export class NewsItemComponent implements OnInit {
 
   @Input() title: string
 
-  @Input() url: string
+  @Input() url: any
 
   @Input() score: number
 

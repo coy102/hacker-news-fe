@@ -1,21 +1,22 @@
-<mat-card class="card-root">
-  <mat-spinner [mode]="'indeterminate'" *ngIf="loadingItem"></mat-spinner>
-  <div *ngIf="!loadingItem">
-    <h3>{{ newsData.title }}</h3>
-    <small *ngIf="newsData.url">
-      <a [href]="newsData.url">({{ newsData.url }})</a>
-    </small>
-    <pre class="pre-root" [innerHTML]="newsData.text"></pre>
-    <small
-      >{{ newsData.score }} points by
-      <span [routerLink]="['/user', newsData.by]">{{ newsData.by }}</span> |
-      {{ newsData.time }}</small
-    >
-  </div>
-  <div>
-    <div *ngFor="let comment of newsData.kids; let i = index">
-      <app-comment-collapsible [level]="0" [id]="comment">
-      </app-comment-collapsible>
+<div class="card card-root">
+  <div class="card-body">
+    <div *ngIf="!loadingItem">
+      <h3>{{ newsData.title }}</h3>
+      <small *ngIf="newsData.url">
+        <a [href]="newsData.url">({{ newsData.url }})</a>
+      </small>
+      <pre class="pre-root" [innerHTML]="newsData.text"></pre>
+      <small
+        >{{ newsData.score }} points by
+        <span [routerLink]="['/user', newsData.by]">{{ newsData.by }}</span> |
+        {{ newsData.time }}</small
+      >
+    </div>
+    <div>
+      <div *ngFor="let comment of newsData.kids; let i = index">
+        <app-comment-collapsible [level]="0" [id]="comment">
+        </app-comment-collapsible>
+      </div>
     </div>
   </div>
-</mat-card>
+</div>

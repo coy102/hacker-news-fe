@@ -1,13 +1,8 @@
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
-import { MatIconModule } from '@angular/material/icon'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
-import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { AppComponent } from './app.component'
 import { CommentCollapsibleComponent } from './components/comment-collapsible/comment-collapsible.component'
@@ -28,14 +23,9 @@ import { ApiService } from './services/api-service.service'
     CommentCollapsibleComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatToolbarModule,
     RouterModule.forRoot(rootRoutes),
   ],
   providers: [ApiService],

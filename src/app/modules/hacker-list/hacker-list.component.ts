@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Router } from '@angular/router'
 import * as moment from 'moment'
-import { map, mergeMap } from 'rxjs'
+import { map } from 'rxjs'
 import { ApiService } from 'src/app/services/api-service.service'
+import { NewsItems } from 'src/app/services/types/news'
+import { NewsProvider } from 'src/app/utils/news-provider'
 
 @Component({
   selector: 'app-hacker-list',
@@ -10,63 +12,48 @@ import { ApiService } from 'src/app/services/api-service.service'
   styleUrls: ['./hacker-list.component.css'],
 })
 export class HackerListComponent implements OnInit {
-  public news: any
+  public news: NewsItems[]
 
-  public newsTotal!: number
+  page: number = 1
 
-  private subscription: any
+  public pageSize: number = 20
 
-  public page!: number
-
-  public totalPages!: number
+  public loading: boolean = true
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute,
+    private newsProvider: NewsProvider,
     private router: Router
   ) {
     this.news = []
   }
 
   ngOnInit(): void {
-    this.subscription = this.route.queryParams
-      .pipe(
-        mergeMap((params: any) => {
-          this.news = []
-          this.page = +params.p || 1
-          return this.apiService.getNewsItemInRange(this.page * 10 - 9)
-        })
-      )
+    const cacheNews = this.newsProvider.getNewsDataCache
+    this.news = cacheNews.map((item: any) => Object.assign([], item))
+
+    if (this.news.length > 0) {
+      this.loading = false
+    } else {
+      this.getNewsAll()
+    }
+  }
+
+  getNewsAll() {
+    this.apiService
+      .getNewsItemInRange()
       .pipe(
         map((data) => {
-          data.item.time = moment.unix(data.item.time).fromNow()
+          data.time = moment.unix(data.time).fromNow()
           return data
         })
       )
       .subscribe((data) => {
         this.news.push(data)
-        this.totalPages = Math.floor((data.count + 9) / 10)
-        this.newsTotal = data.count - 1
+        this.newsProvider.setNewsDataCache(data)
       })
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
-  }
-
-  nextPage() {
-    this.router.navigate(['/list'], {
-      queryParams: {
-        p: Math.min(this.totalPages, this.page + 1),
-      },
-    })
-  }
-
-  prevPage() {
-    this.router.navigate(['/list'], {
-      queryParams: {
-        p: Math.max(1, this.page - 1),
-      },
-    })
+      .add(() => {
+        this.loading = false
+      })
   }
 }
