@@ -9,7 +9,7 @@ export const rootRoutes: Routes = [
     component: HackerListComponent,
   },
   {
-    path: 'hacker-detail',
+    path: 'detail/:id',
     component: HackerDetailComponent,
   },
 ]

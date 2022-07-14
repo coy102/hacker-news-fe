@@ -1,0 +1,8 @@
+.card-root {
+  margin-top: 20px;
+}
+
+.pre-root {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

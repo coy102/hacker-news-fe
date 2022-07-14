@@ -8,6 +8,7 @@ export interface NewsItems {
   time: any
   title: string
   type: string
+  url?: string
 }
 
 export interface NewsFeed {

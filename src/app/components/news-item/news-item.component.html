@@ -1,14 +1,14 @@
-<div>
-  <div>{{ index }}. {{ title }}</div>
+<mat-card class="card-spacing">
+  <div>{{ title }}</div>
   <small
     >{{ score }} points by
     <a class="feed-item-username">{{ by }}</a>
     | {{ time }} |
     <a
       class="feed-item-comments-count"
-      [routerLink]="['/item', id]"
+      [routerLink]="['/detail', id]"
       routerLinkActive="active"
       >{{ commentsCount }} comments</a
     >
   </small>
-</div>
+</mat-card>

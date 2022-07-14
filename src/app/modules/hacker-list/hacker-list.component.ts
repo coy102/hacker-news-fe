@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import * as moment from 'moment'
 import { map } from 'rxjs'
-import { ApiServiceService } from 'src/app/services/api-service.service'
+import { ApiService } from 'src/app/services/api-service.service'
 
 @Component({
   selector: 'app-hacker-list',
@@ -13,13 +13,13 @@ export class HackerListComponent implements OnInit {
 
   private subscription: any
 
-  constructor(private apiService: ApiServiceService) {
+  constructor(private apiService: ApiService) {
     this.news = []
   }
 
   ngOnInit(): void {
     this.subscription = this.apiService
-      .getFeedItemInRange(30)
+      .getNewsItemInRange()
       .pipe(
         map((data) => {
           data.item.time = moment.unix(data.item.time).fromNow()
@@ -29,8 +29,6 @@ export class HackerListComponent implements OnInit {
       .subscribe((data) => {
         this.news.push(data)
       })
-
-    console.log(this.news)
   }
 
   ngOnDestroy() {
