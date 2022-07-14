@@ -19,7 +19,7 @@ export class HackerDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.loadingItem = true
-      this.apiService.getNewsDetail(params.id).subscribe((data) => {
+      this.apiService.getNewsComment(params.id).subscribe((data) => {
         this.newsData = {
           ...data,
           time: moment.unix(data.time).fromNow(),

@@ -5,9 +5,10 @@ import { HackerListComponent } from './modules/hacker-list/hacker-list.component
 
 export const rootRoutes: Routes = [
   {
-    path: '',
+    path: 'list',
     component: HackerListComponent,
   },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   {
     path: 'detail/:id',
     component: HackerDetailComponent,
